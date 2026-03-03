@@ -417,3 +417,11 @@ body
     color: white;
     margin-left: 5px;
 }
+
+.password-container {
+	display: inline-flex;
+}
+
+.password-group-container {
+	justify-content: start
+}
