@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SCS Sign-in</title>
+    <link rel="icon" href="Images/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container" id="card-container">
+        <div class="auth-box">
+            <noscript>Enable JavaScript to sign in with your Microsoft account.</noscript>
+            <p id="sign-in-status" role="status"></p>
+            <a href="./" class="custom-link">Return to the SCS landing page</a>
+        </div>
+    </main>
+    <script src="js/oauth-state.js"></script>
+    <script>
+        const signInStatus = document.getElementById('sign-in-status');
+        try {
+            signInStatus.textContent = 'Opening Microsoft sign-in…';
+            scsOAuth.start();
+        } catch {
+            signInStatus.textContent = 'Sign-in could not start. Allow browser storage for this site and try again.';
+        }
+    </script>
+</body>
+</html>
