@@ -30,70 +30,77 @@
 
     <!-- JavaScript -->
     <script defer src = "js/current-year.js"></script>
+    <!-- blocking = "render": browsers that support it wait for this script before showing the page, so the contributors don't jump into place -->
+    <script defer blocking = "render" src = "js/contributors.js"></script>
 
 </head>
 
 <body>
-    <div class = "container" id = "header-container">
-        <h1 class = "title">SCS - Useful links</h1>
+    <main class="content">
+        <div class = "container" id = "header-container">
+            <h1 class = "title">SCS - Useful links</h1>
 
-        <a href = "https://www.cs.ubbcluj.ro/" target="_blank">
-            <img class = "animation-increase animation-increase-big" id = "logo" src = "Images/logo.png">
-        </a>
-    </div>
+            <a href = "https://www.cs.ubbcluj.ro/" target="_blank">
+                <img class = "animation-increase animation-increase-big" id = "logo" src = "Images/logo.png">
+            </a>
+        </div>
 
-    <div class = "container" id = "card-container">
-        <a class="card-link" href="sign-in.html" target="_blank" rel="noopener">
-            <div class="animation-increase animation-increase-small card">
-                <h5 class="card-title-special animation-blink">SCS Initial credentials</h5>
-                <div class="sign-in-icon-container">
-                    <p class="sign-in-text">Use your @stud.ubbcluj.ro account and log in</p>
+        <div class = "container" id = "card-container">
+            <a class="card-link" href="sign-in.html" target="_blank" rel="noopener">
+                <div class="animation-increase animation-increase-small card">
+                    <h5 class="card-title-special animation-blink">SCS Initial credentials</h5>
+                    <div class="sign-in-icon-container">
+                        <p class="sign-in-text">Use your @stud.ubbcluj.ro account and log in</p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <a class = "card-link" href = "https://www.scs.ubbcluj.ro/webmail/" target="_blank">
-            <div class = "animation-increase animation-increase-small card">
-                <h5 class = "card-title">Webmail for students of the Faculty of Mathematics and Computer Science</h5>
-            </div>
-        </a>
+            <a class = "card-link" href = "https://www.scs.ubbcluj.ro/webmail/" target="_blank">
+                <div class = "animation-increase animation-increase-small card">
+                    <h5 class = "card-title">Webmail for students of the Faculty of Mathematics and Computer Science</h5>
+                </div>
+            </a>
 
-        <a class = "card-link" href = "http://www.cs.ubbcluj.ro/" target="_blank">
-            <div class = "animation-increase animation-increase-small card">
-                <h5 class = "card-title">The Faculty of Mathematics and Computer Science page at Babeș-Bolyai University</h5>
-            </div>  
-        </a>
+            <a class = "card-link" href = "http://www.cs.ubbcluj.ro/" target="_blank">
+                <div class = "animation-increase animation-increase-small card">
+                    <h5 class = "card-title">The Faculty of Mathematics and Computer Science page at Babeș-Bolyai University</h5>
+                </div>
+            </a>
 
-        <a class = "card-link" href = "https://www.cs.ubbcluj.ro/software-microsoft-licentiat-gratuit-pentru-studenti/" target="_blank">
-            <div class = "animation-increase animation-increase-small card">
-                <h5 class = "card-title">Free licensed Microsoft software for students</h5>
-            </div>
-        </a>
+            <a class = "card-link" href = "https://www.cs.ubbcluj.ro/software-microsoft-licentiat-gratuit-pentru-studenti/" target="_blank">
+                <div class = "animation-increase animation-increase-small card">
+                    <h5 class = "card-title">Free licensed Microsoft software for students</h5>
+                </div>
+            </a>
 
-        <a class = "card-link" href = "https://www.scs.ubbcluj.ro/ams/" target="_blank">
-            <div class = "animation-increase animation-increase-small card">
-                <h5 class = "card-title">AMS - Assignment Management System</h5>
-            </div>
-        </a>
+            <a class = "card-link" href = "https://www.scs.ubbcluj.ro/ams/" target="_blank">
+                <div class = "animation-increase animation-increase-small card">
+                    <h5 class = "card-title">AMS - Assignment Management System</h5>
+                </div>
+            </a>
 
-        <a class = "card-link" href = "https://www.scs.ubbcluj.ro/phpMyAdmin" target="_blank">
-            <div class = "animation-increase animation-increase-small card ">
-                <h5 class = "card-title">phpMyAdmin</h5>
-            </div>
-        </a>
-    </div>
-
-    <div class="footer">
-        <div class="footer-content">
-            <h1 class = "credits-text">Pull requests welcome <a id="github" target="_blank" href="https://github.com/KiralyCraft/SCS_landing_page">here</a></h1>
+            <a class = "card-link" href = "https://www.scs.ubbcluj.ro/phpMyAdmin" target="_blank">
+                <div class = "animation-increase animation-increase-small card ">
+                    <h5 class = "card-title">phpMyAdmin</h5>
+                </div>
+            </a>
         </div>
+    </main>
 
-        <div class="footer-content">
-            <h1 class="credits-text"><span id = "Rares">Nandra Rares <a id="RaresLink" href="https://github.com/rares-nandra" target="_blank"><span id = "RaresNickname">(Dexter)</span></a></span>, <br><br><span id = "Spac">Spac Alexandru</span>, <br><br><span id = "Alex">Cozma Alexandru</span>, <br><br><span id = "Alexandra">Trifan Alexandra</span></h1>
-        </div>
+    <footer class="footer">
+        <p class="footer-text footer-start">Pull requests are welcome on <a class="footer-link" href="https://github.com/KiralyCraft/SCS_landing_page" target="_blank" rel="noopener">GitHub</a></p>
 
-        <div class="footer-content">
-            <h1 class="credits-text" id = "copyright">© Babeş-Bolyai University,&nbsp;<span id="currentYear"></span>.&nbsp;&nbsp;All rights reserved.</h1>
-        </div>
-    </div>
+        <section class="footer-contributors" aria-labelledby="contributors-title">
+            <h2 class="footer-title" id="contributors-title"><span aria-hidden="true">- </span>Contributors<span aria-hidden="true"> -</span></h2>
+            <ul class="contributors-list">
+                <li>Nandra Rares <a class="contributor-nickname" href="https://github.com/rares-nandra" target="_blank" rel="noopener" aria-label="Dexter on GitHub">(Dexter)</a></li>
+                <li>Spac Alexandru</li>
+                <li>Cozma Alexandru</li>
+                <li>Trifan Alexandra</li>
+                <li>Moldovan Ilie-Gabriel <a class="contributor-nickname" href="https://github.com/GabiMoldovan" target="_blank" rel="noopener" aria-label="GabiMoldovan on GitHub">(GM)</a></li>
+            </ul>
+        </section>
+
+        <p class="footer-text footer-end">© Babeș-Bolyai University, <span id="currentYear">2026</span>. All rights reserved.</p>
+    </footer>
 </body>
