@@ -6,7 +6,7 @@
 	--BackgroundPrimary: #121212;
 	--BackgroundSecondary: #191919;
 	--Text: rgba(255, 255, 255, 0.8);
-	--Link: #2358C2;
+	--Link: lightblue;
 }
   
 body
@@ -16,6 +16,12 @@ body
 	background-color: var(--BackgroundPrimary);
 	margin: 0 !important;
 	padding: 0 !important;
+
+	/* keeps the footer at the bottom when the page is short */
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100dvh;
 }
 
 .debug
@@ -222,81 +228,150 @@ body
   	background: var(--GradientOffline) border-box;
 }
 
+.content
+{
+	flex-grow: 1;
+}
+
 .footer
 {
-	margin-top: 5vh;
-	padding: 10vh 2.5vw 10vh 2.5vw;
+	margin-top: 48px;
+	padding: 48px 2.5vw;
 	background-color: var(--BackgroundSecondary);
-	max-width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas: "start contributors end";
 	align-items: center;
+	gap: 32px;
+	text-align: center;
 }
 
-.footer2
+.footer > *
 {
-	margin-top: 5vh;
-	padding: 10vh 2.5vw 10vh 2.5vw;
-	background-color: var(--BackgroundSecondary);
-	max-width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-
-    box-sizing: border-box;
+	margin: 0;
 }
 
-@media(max-width: 950px)
+.footer-start
 {
-	.footer
-	{
-		flex-direction: column;
-		row-gap: 7.5vh;
-		position : relative;
-	}
+	grid-area: start;
 }
 
-@media(max-width: 950px)
+.footer-contributors
 {
-	.footer2
-	{
-		flex-direction: column;
-		row-gap: 7.5vh;
-		position : relative;
-	}
+	grid-area: contributors;
 }
 
-@media(min-width: 951px)
+.footer-end
 {
-	body:has(> .footer2)
-	{
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
-
-	body:has(> .footer2) > .content
-	{
-		flex-grow: 1;
-	}
+	grid-area: end;
 }
 
-.footer-content
+.footer-text
 {
-	flex: 0.33;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	color: var(--Text);
+	font-size: 14px;
+	font-weight: bold;
+	text-wrap: balance;
 }
 
-#github
+.footer-link
 {
 	color: var(--Link);
-	font-size: 14px;
-	right: 10px;
 	text-decoration: underline;
+}
+
+.footer-title
+{
+	margin: 0 0 10px;
+	color: rgba(255, 255, 255, 0.55);
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+/* The names are placed by js/contributors.js: columns of at most 5 names when the footer is wide enough,
+   longer columns when fewer columns fit. Each column is 2 grid tracks wide, so a name can also sit between two columns.
+   Without JavaScript the names fill columns of 5 from the top, and at 950px and below they are in a single column. */
+.contributors-list
+{
+	--contributors-tracks: 2;
+
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(5, auto);
+	grid-template-columns: repeat(var(--contributors-tracks), 1fr);
+	grid-auto-columns: 1fr;
+	column-gap: 40px;
+	/* max-content makes all the columns as wide as the longest name */
+	width: max-content;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.contributors-list li
+{
+	grid-column: span 2;
+	padding: 5px 0;
+	color: var(--Text);
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.contributor-nickname
+{
+	background: linear-gradient(145deg, rgb(106, 177, 224) 0%, rgb(200, 112, 240) 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: none;
+}
+
+/* js/contributors.js adds data-stacked when the texts don't fit next to the list */
+.footer[data-stacked]
+{
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-areas: "start" "contributors" "end";
+}
+
+/* Without JavaScript the names can't be measured, so with 6 or more names the footer parts go one under another
+   (in browsers that know :has()). It's a separate rule because, if it were combined with the rule above,
+   browsers that don't know :has() would skip that rule too. */
+.footer:has(.contributors-list:not([data-laid-out]) > li:nth-child(6))
+{
+	grid-template-columns: minmax(0, 1fr);
+	grid-template-areas: "start" "contributors" "end";
+}
+
+@media(max-width: 950px)
+{
+	/* minmax(0, 1fr) so the column is never wider than the footer */
+	.footer
+	{
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas: none;
+		gap: 28px;
+		padding: 40px 20px;
+	}
+
+	/* the footer parts go one under another, in page order */
+	.footer > *
+	{
+		grid-area: auto;
+	}
+
+	.contributors-list
+	{
+		column-gap: 24px;
+	}
+
+	/* without JavaScript the names go in one column */
+	.contributors-list:not([data-laid-out])
+	{
+		display: block;
+	}
 }
 
 .credits-text
@@ -304,19 +379,6 @@ body
 	color: var(--Text);
 	font-size: 14px;
 	text-align: center;
-}
-
-#RaresNickname
-{
-	background: linear-gradient(145deg, rgb(106, 177, 224) 0%, rgb(200, 112, 240) 100%);
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
-#RaresLink
-{
-	text-decoration: none;
 }
 
 
@@ -393,7 +455,7 @@ body
 }
 
 .custom-link {
-    color: lightblue;
+    color: var(--Link);
     font-weight: bold;
     text-decoration: underline;
 }
