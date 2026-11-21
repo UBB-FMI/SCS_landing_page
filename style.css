@@ -245,10 +245,6 @@ body
 	justify-content: space-around;
 	align-items: center;
 
-	position: absolute;
-    bottom: 0;
-    width: 100%;
-
     box-sizing: border-box;
 }
 
@@ -269,6 +265,21 @@ body
 		flex-direction: column;
 		row-gap: 7.5vh;
 		position : relative;
+	}
+}
+
+@media(min-width: 951px)
+{
+	body:has(> .footer2)
+	{
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	body:has(> .footer2) > .content
+	{
+		flex-grow: 1;
 	}
 }
 
@@ -387,7 +398,9 @@ body
     text-decoration: underline;
 }
 
-
+.back-link {
+    text-decoration: none;
+}
 
 .toggle-btn {
     background: transparent;
